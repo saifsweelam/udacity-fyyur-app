@@ -5,10 +5,12 @@ from wtforms.validators import DataRequired, AnyOf, URL
 
 class ShowForm(FlaskForm):
     artist_id = StringField(
-        'artist_id'
+        'artist_id',
+        validators=[DataRequired()]
     )
     venue_id = StringField(
-        'venue_id'
+        'venue_id',
+        validators=[DataRequired()]
     )
     start_time = DateTimeField(
         'start_time',
@@ -83,10 +85,12 @@ class VenueForm(FlaskForm):
         'address', validators=[DataRequired()]
     )
     phone = StringField(
-        'phone'
+        'phone',
+        validators=[DataRequired()]
     )
     image_link = StringField(
-        'image_link', validators=[URL()]
+        'image_link',
+        validators=[DataRequired(), URL()]
     )
     genres = SelectMultipleField(
         # TODO implement enum restriction
@@ -114,13 +118,14 @@ class VenueForm(FlaskForm):
         ]
     )
     facebook_link = StringField(
-        'facebook_link', validators=[URL()]
+        'facebook_link', validators=[URL(), DataRequired()]
     )
     seeking_description = StringField(
-        'seeking_description'
+        'seeking_description',
+        validators=[DataRequired()]
     )
     website = StringField(
-        'website', validators=[URL()]
+        'website', validators=[URL(), DataRequired()]
     )
 
 class ArtistForm(FlaskForm):
@@ -187,14 +192,12 @@ class ArtistForm(FlaskForm):
         ]
     )
     phone = StringField(
-        # TODO implement validation logic for state
         'phone'
     )
     image_link = StringField(
         'image_link'
     )
     genres = SelectMultipleField(
-        # TODO implement enum restriction
         'genres', validators=[DataRequired()],
         choices=[
             ('Alternative', 'Alternative'),
@@ -219,7 +222,6 @@ class ArtistForm(FlaskForm):
         ]
     )
     facebook_link = StringField(
-        # TODO implement enum restriction
         'facebook_link', validators=[URL()]
     )
     seeking_description = StringField(
@@ -229,4 +231,4 @@ class ArtistForm(FlaskForm):
         'website', validators=[URL()]
     )
     
-# TODO IMPLEMENT NEW ARTIST FORM AND NEW SHOW FORM
+# TODO: DONE IMPLEMENT NEW ARTIST FORM AND NEW SHOW FORM
